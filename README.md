@@ -38,8 +38,8 @@ to connect to an HTTP Endpoint, is non-standard.
 We're doing it this way only to dmeonstrate the behavior of the SSLInfo element in
 the JavaScript policy configuration.
 
-There is a single JavaScript module in the proxy.  That module - the ame JavaScript code
-- is used in 4 different JavaScript policies, each with a different configuration for
+There is a single JavaScript module in the proxy.  That module, the same simple JavaScript code,
+is used in 4 different JavaScript policies, each with a different configuration for
 SSLInfo.
 
 The SSLInfo element is what tells the JavaScript policy how to resolve the peer
@@ -89,19 +89,21 @@ verifying the chain of those two signatures.
 We have different JS policies with different SSLInfo elements, each pointing to a
 different truststore, each of which contains a different cert.
 
-| #  | certifiicate              | TLS Verification Result |
-| -- | ------------------------- | ----------------------- |
-| 1  | GlobalSign Root CA - R2   | success                 |
-| 2  | Appspot wildcard          | failure                 |
-| 3  | GoDaddy Class2 C          | failure                 |
-| 4  | -no truststore-           | no verification         |
+| policy                                                                       | truststore & certificate   | TLS Verification Result |
+| ---------------------------------------------------------------------------- | -------------------------- | ----------------------- |
+| [JS-GlobalSign-Root-CA-R2](./apiproxy/policies/JS-GlobalSign-Root-CA-R2.xml) | GlobalSign Root CA - R2    | success                 |
+| [JS-Appspot-Wildcard-Cert](./apiproxy/policies/JS-Appspot-Wildcard-Cert.xml) | Appspot wildcard           | failure                 |
+| [JS-GoDaddy-Class2-CA](./apiproxy/policies/JS-GoDaddy-Class2-CA.xml)         | GoDaddy Class2 C           | failure                 |
+| [JS-no-SSLInfo.xml](./apiproxy/policies/JS-no-SSLInfo.xml)                   | -no truststore or cert-    | no verification         |
 
 
 ## Preparation
 
-Setting up the truststores is done with the help of a script in [the tools
-directory](./tools).  The script loads a single truststore to your organization +
-environment, for each certificate found in the [certs](./certs) directory.
+Setting up the various truststores is done with the help of a script in [the tools
+directory](./tools). The script loads a single truststore to your organization +
+environment, for each certificate found in the [certs](./certs) directory. In this way
+there is a 1:1 mapping between the certs in this repo, and the truststores created by
+the script.
 
 ```
 cd tools
@@ -112,6 +114,9 @@ ENV=test
 ```
 
 These truststores are then used by the policies in the API Proxy bundle.
+
+NB: It is not required in Apigee Edge to store a single certificate in each
+truststore. This is being done here only for the purposes of demonstration.
 
 
 ## Deploying the Proxy
