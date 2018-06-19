@@ -1,0 +1,6 @@
+<Javascript name='JS-no-SSLInfo' timeLimit='2200' >
+  <Properties>
+    <Property name='target'>https://dchiesa-first-project.appspot.com/status</Property>
+  </Properties>
+  <ResourceURL>jsc://httpsRequest.js</ResourceURL>
+</Javascript>

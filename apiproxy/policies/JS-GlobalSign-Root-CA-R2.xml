@@ -1,0 +1,11 @@
+<Javascript name='JS-GlobalSign-Root-CA-R2' timeLimit='2200' >
+  <Properties>
+    <Property name='target'>https://dchiesa-first-project.appspot.com/status</Property>
+  </Properties>
+   <SSLInfo>
+      <Enabled>true</Enabled>
+      <ClientAuthEnabled>false</ClientAuthEnabled>
+      <TrustStore>ref://js-sslinfo-demo-GlobalSign-Root-CA-R2-ref</TrustStore>
+   </SSLInfo>
+  <ResourceURL>jsc://httpsRequest.js</ResourceURL>
+</Javascript>

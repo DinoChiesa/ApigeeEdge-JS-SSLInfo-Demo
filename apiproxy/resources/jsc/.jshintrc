@@ -1,0 +1,11 @@
+{
+  "esversion": 5,
+  "undef" : true,  
+  "globals": {
+    "context": true,
+    "httpClient" : true,
+    "properties" : true
+  },
+  "node": false,
+  "rhino" : true
+}
